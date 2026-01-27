@@ -558,9 +558,11 @@
                     <code>{"reasons": [], "flags": [], "score": 0}</code>
                   </li>
                   <li>
-                    Call methods in order: <code>derive_metrics</code> →
-                    <code>classify_bp</code> → <code>apply_risk_rules</code> →
-                    <code>prepare_enriched_patient</code>
+                    Coordinate the transformation by calling the appropriate
+                    methods in the correct sequence based on their dependencies
+                    (e.g., <code>classify_bp</code> may depend on metrics from
+                    <code>derive_metrics</code>,
+                    <code>apply_risk_rules</code> may depend on BP stage, etc.)
                   </li>
                   <li>Return the final <code>EnrichedPatient</code> object</li>
                 </ul>
@@ -835,54 +837,25 @@
               three health metrics: <code>blood_pressure_systolic</code>,
               <code>heart_rate</code>, and <code>glucose_fasting</code>.
             </p>
-            <p><b>Algorithm Overview:</b> Follow a three-pass approach:</p>
-            <ol type="1">
-              <li>
-                <b>Pass 1 - Bucket and Collect:</b> Organize patients by age
-                band and collect values for each metric into separate lists
-              </li>
-              <li>
-                <b>Pass 2 - Compute Statistics:</b> For each age band and each
-                metric, compute statistics using <code>compute_stats</code>. If
-                a metric has no values for an age band, set it to
-                <code>None</code>
-              </li>
-              <li>
-                <b>Pass 3 - Cleanup:</b> If all three metrics for an age band
-                are <code>None</code>, set the entire age band entry to
-                <code>None</code> in the final result
-              </li>
-            </ol>
             <p><b>Requirements:</b></p>
             <ul>
               <li>
-                Initialize buckets for all four age bands with empty lists for
-                each metric
+                Organize patients by age band using
+                <code>get_age_band</code> and collect values for each metric
               </li>
               <li>
-                Use <code>get_age_band</code> to determine each patient's age
-                band
+                Compute statistics for each metric in each age band using
+                <code>compute_stats</code>
               </li>
               <li>
-                Extract and convert values to float for:
-                <code>blood_pressure_systolic</code>, <code>heart_rate</code>,
-                and <code>glucose_fasting</code>
-              </li>
-              <li>
-                Use <code>compute_stats</code> to calculate statistics for each
-                metric in each age band
-              </li>
-              <li>
-                Handle empty lists by setting the corresponding statistic to
+                Handle cases where statistics cannot be computed (e.g., empty
+                lists) by setting the corresponding statistic to
                 <code>None</code>
               </li>
               <li>
-                Construct <code>AgeBandStats</code> objects for each age band
-                with the computed statistics
-              </li>
-              <li>
-                In the final pass, set age band to <code>None</code> if all
-                three statistics are <code>None</code>
+                If all three metrics for an age band are <code>None</code>, set
+                the entire age band entry to <code>None</code> in the final
+                result
               </li>
               <li>
                 Return a <code>DatasetStatistics</code> model with:
@@ -1294,17 +1267,16 @@
               Implement <code>fetchPatients</code> and
               <code>fetchStatistics</code> Functions
             </h4>
-            <p>These functions should:</p>
-            <ol type="1">
-              <li>Set loading state using the appropriate state setter</li>
-              <li>
-                Clear any previous errors using the appropriate state setter
-              </li>
-              <li>Make API call using the appropriate API function</li>
-              <li>Handle success</li>
-              <li>Handle errors</li>
-              <li>Clear loading state using the appropriate state setter</li>
-            </ol>
+            <p>
+              These functions should manage loading states, handle API calls,
+              update state on success, and handle errors appropriately. Ensure
+              loading states are properly cleared in all scenarios (success and
+              error cases).
+            </p>
+            <p>
+              For <code>fetchPatients</code>, use the current filters from state
+              when making the API call.
+            </p>
             <h4>Use <code>useCallback</code> for Memoization</h4>
             <p>
               Both functions should be wrapped with <code>useCallback</code> to
@@ -1518,25 +1490,26 @@
               transform error messages from API responses to be user-friendly.
             </p>
             <p><b>Requirements:</b></p>
-            <ol type="1">
+            <ul>
               <li>
                 The interceptor is already configured on the <code>api</code>
                 instance - you need to implement the error handling logic in the
-                error callback function
+                error callback function (second parameter)
               </li>
               <li>
-                Check if the error is an Axios error and has response data:
-                <code>axios.isAxiosError(error) && error.response?.data</code>
+                Extract error details from API response data and transform them
+                into user-friendly messages
               </li>
               <li>
-                Extract the error details from the response data structure
+                Handle cases where error responses may have different structures
+                (e.g., some errors may have a <code>detail</code> field in the
+                response data)
               </li>
-              <li>Transform the error message</li>
               <li>
-                Return suitably to propagate the error (so it can be caught by
-                the calling code)
+                Ensure errors are properly propagated so they can be caught and
+                handled by the calling code
               </li>
-            </ol>
+            </ul>
             <p>
               <b>Note:</b> The success handler (first parameter) is already
               implemented and should not be modified. Only implement the error
