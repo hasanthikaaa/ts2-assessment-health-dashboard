@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Instructions | Health Dashboard</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
+
+      :root {
+        --primary: #5213e5;
+      }
+
+      body {
+        font-family: "Plus Jakarta Sans", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: var(--primary);
+        margin: 0;
+      }
+
+      section#note {
+        background-color: #ffffff;
+        margin: 0 10vw;
+        padding: 1rem 2rem;
+      }
+
+      section#note > section {
+        margin-bottom: 2rem;
+        padding-left: 1rem;
+        border-left: 5px solid #ccc;
+      }
+
+      h1,
+      h2,
+      h3,
+      p,
+      ol,
+      ul {
+        line-height: 1.5;
+      }
+
+      li {
+        margin: 1rem 0;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        color: var(--primary);
+        border-bottom: 2px solid var(--primary);
+        margin: 0;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+        border-bottom: 1px solid black;
+      }
+
+      h3 {
+        color: var(--primary);
+      }
+
+      span.label {
+        background-color: var(--primary);
+        padding: 0 10px;
+        color: white;
+        margin-right: 0.5rem;
+        font-weight: bold;
+      }
+
+      span.important-tag {
+        background-color: #ff0000;
+        padding: 0 10px;
+        color: white;
+        font-weight: bold;
+      }
+
+      p.important-tag {
+        background-color: #ff0000;
+        padding: 0 10px;
+        color: white;
+        font-weight: bold;
+      }
+
+      span.important {
+        color: #ff0000;
+        font-weight: bold;
+      }
+
+      div#image-container img {
+        height: 550px;
+        border-radius: 0.5rem;
+        object-fit: cover;
+      }
+
+      code,
+      pre {
+        font-size: 1rem;
+        font-weight: bold;
+        background-color: #ccc;
+        padding: 0 5px;
+      }
+
+      p.muted {
+        color: #777;
+        margin-top: 5px;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      img.logo {
+        height: 50px;
+      }
+
+      @media only screen and (max-width: 1000px) {
+        section#note {
+          margin: 0;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <section id="note">
+      <header>
+        <img
+          src="assets/ts2-logo.png"
+          alt="Games Developer Logo"
+          class="logo"
+        />
+        <h1>Instructions for Full Stack Developer Technical Assessment</h1>
+        <p>
+          <span class="label">Goal</span>Complete a full-stack health data
+          dashboard application with a Python/FastAPI backend and React frontend
+          to process, analyze, and display patient health data.
+        </p>
+        <p>
+          <span class="label">Score</span>Out of 100 marks - based on code
+          quality, functionality, correctness, type safety, error handling,
+          algorithmic thinking, API integration, and overall implementation
+          completeness.
+        </p>
+        <p><span class="label">Maximum Time</span>3 hours</p>
+        <p>
+          <span class="label">Assessment Structure</span>5 questions total (3
+          Backend + 2 Frontend). Questions include both full feature
+          implementations and focused tasks. Questions must be completed
+          sequentially.
+        </p>
+        <p>
+          <span class="important">
+            Improvements, optimizations, and enhancements are encouraged
+            throughout the assessment, as long as they do not conflict with or
+            break existing code.</span
+          >
+        </p>
+        <p>
+          <span class="important">
+            If you feel like you don't know how to solve a problem the way that
+            it is asked for, try to think critically and solve it however you
+            can, as long as it works!</span
+          >
+        </p>
+      </header>
+
+      <section>
+        <h2>Project Details</h2>
+        <h3>Description</h3>
+        <ul>
+          <li>
+            This project is a
+            <b
+              >full-stack health data dashboard application designed to process
+              and display patient health data</b
+            >. The backend processes clinical data from CSV files, applies risk
+            assessment rules, classifies blood pressure stages, and computes
+            statistical summaries. The frontend provides an interactive
+            interface for viewing patient data, filtering by various criteria,
+            and displaying aggregated statistics.
+          </li>
+          <li>
+            The application demonstrates a complete data pipeline: extracting
+            raw patient data, transforming it through business logic, computing
+            statistics, and presenting it through a simple (wireframed) web
+            interface.
+          </li>
+          <li>
+            You will work with both the <b>Python/FastAPI backend</b> and the
+            <b>React/TypeScript frontend</b>, implementing missing functionality
+            across the full stack.
+          </li>
+        </ul>
+        <h3>Core Features</h3>
+        <ul>
+          <li>
+            <span class="label">Data Processing Pipeline</span> The backend
+            extracts patient data from CSV, enriches it with risk assessments
+            and blood pressure classifications, and computes statistical
+            summaries grouped by age bands.
+          </li>
+          <li>
+            <span class="label">Patient Filtering</span> The frontend allows
+            users to filter patients by risk level, blood pressure stage, and
+            age band through interactive filter controls.
+          </li>
+          <li>
+            <span class="label">Statistics Dashboard</span> The application
+            displays aggregated statistics (mean, median, standard deviation)
+            for key health metrics, organized by age bands in an easy-to-read
+            card format.
+          </li>
+          <li>
+            <span class="label">Patient Table</span> A comprehensive table
+            displays patient information with expandable rows showing detailed
+            risk assessment reasons and clinical data.
+          </li>
+          <li>
+            <span class="label">API Integration</span> The frontend communicates
+            with the backend API to fetch patient data and statistics, with
+            proper error handling and loading states.
+          </li>
+        </ul>
+        <h3>Your Role</h3>
+        <ul>
+          <li>
+            As part of the assignment, you will be working on filling in certain
+            "blanks" in the provided codebase.
+          </li>
+          <li>
+            All the tasks have been described
+            <b>step-by-step</b> below. Simply follow these steps to complete the
+            assessment.
+          </li>
+        </ul>
+        <h3>Overall App Flow</h3>
+        <ol>
+          <li>
+            <span class="label">Backend Startup</span> When the FastAPI server
+            starts, it extracts patient data from CSV, processes it through
+            transformation pipelines (risk assessment, BP classification), and
+            computes statistics. <b>The processed data is stored in memory.</b>
+          </li>
+          <li>
+            <span class="label">Frontend Initialization</span> The React
+            application loads and fetches patient data and statistics from the
+            backend API endpoints.
+          </li>
+          <li>
+            <span class="label">Data Display</span> The frontend displays
+            statistics cards showing aggregated health metrics and a patient
+            table with all patient information.
+          </li>
+          <li>
+            <span class="label">User Interaction</span> Users can apply filters
+            (risk level, BP stage, age band) to narrow down the patient list.
+            The frontend sends filter parameters to the backend API.
+          </li>
+          <li>
+            <span class="label">Filtered Results</span> The backend processes
+            filter requests and returns the filtered patient list. The frontend
+            updates the table to show only matching patients.
+          </li>
+          <li>
+            <span class="label">Detail View</span> Users can expand table rows
+            to view detailed risk assessment reasons and additional patient
+            information.
+          </li>
+        </ol>
+        <h3>Tech Stack</h3>
+        <ul>
+          <li>
+            <span class="label">Python & FastAPI</span> The backend is built
+            with Python and FastAPI, handling data extraction, transformation,
+            and API endpoints. You'll work with Pydantic models and enums.
+          </li>
+          <li>
+            <span class="label">React & TypeScript</span> The frontend uses
+            React with TypeScript for type safety. You'll work with React hooks
+            (<code>useState</code>, <code>useEffect</code>,
+            <code>useCallback</code>), Context API, and component composition.
+          </li>
+          <li>
+            <span class="label">Axios</span> The frontend uses Axios for API
+            communication, including interceptors for error handling and request
+            configuration.
+          </li>
+          <li>
+            <span class="label">Pydantic</span> The backend uses Pydantic for
+            data validation and model definitions when processing patient data.
+          </li>
+          <li>
+            <span class="label">Version Control</span> Git and GitHub are used
+            to host this project's repository and for submitting your work.
+          </li>
+          <li>
+            Since this assessment will primarily use Git & GitHub, you will need
+            <b>a GitHub account</b> and some experience working with the Git
+            CLI.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Task 1 - Setting up your development environment</h2>
+        <ol>
+          <li>
+            Fork
+            <a
+              href="https://github.com/teams-squared/ts2-assessment-health-dashboard"
+              >this GitHub repository</a
+            >
+            onto your personal GitHub account and
+            <b>clone it to your machine</b> - this folder contains the skeleton
+            for the full-stack project you will be working on.
+            <span class="important"
+              >The time allocation (max. 3 hours) will start from the point you
+              fork this repository.</span
+            >
+          </li>
+          <li>
+            Navigate to this repo's folder from your machine. Inside this folder
+            you will see two main directories: <code>backend/</code> and
+            <code>frontend/</code>. These are where you will spend your time
+            writing and implementing code. You can ignore the folder named
+            <code>instructions/</code>.
+            <ul>
+              <li>
+                <b
+                  >Ensure that you only edit / append code to the respective
+                  files within these folders which have been specified in the
+                  instructions. Do not change any other files, as this may
+                  result in our test scripts failing to score your
+                  submission.</b
+                >
+              </li>
+              <li>
+                Your final submission will be made as a <b>pull request</b> to
+                <a
+                  href="https://github.com/teams-squared/ts2-assessment-health-dashboard"
+                  >this GitHub repository</a
+                >. You will receive your score as a comment to this pull request
+                on GitHub itself.
+              </li>
+              <li>
+                Feel free to commit and push regularly to your personal fork of
+                our repository. However, only submit a pull request to our
+                GitHub repository
+                <b>after you complete the entire assessment.</b>
+              </li>
+            </ul>
+          </li>
+          <li>Open the repo's folder using your favorite text editor / IDE.</li>
+          <li>
+            <b>Backend Setup (Python/FastAPI):</b>
+            <ul>
+              <li>
+                Navigate to the <code>backend/</code> folder in your terminal.
+              </li>
+              <li>
+                Create and activate a Python virtual environment (recommended):
+                <ul>
+                  <li>
+                    <code>python -m venv venv</code> (or
+                    <code>python3 -m venv venv</code> on macOS/Linux)
+                  </li>
+                  <li>
+                    <code>venv\Scripts\activate</code> (Windows) or
+                    <code>source venv/bin/activate</code> (macOS/Linux)
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Install the required Python packages by running:
+                <code>pip install -r requirements.txt</code>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <b>Frontend Setup (React/TypeScript):</b>
+            <ul>
+              <li>
+                Navigate to the <code>frontend/</code> folder in your terminal.
+              </li>
+              <li>
+                Install the required npm packages by running:
+                <code>npm install</code>
+              </li>
+            </ul>
+          </li>
+          <li>
+            The tasks below will specify if any <b>additional files</b> need to
+            be added to these directories or their subdirectories.
+            <b>Don't add any additional files otherwise.</b>
+          </li>
+          <span class="important"
+            >Task 1 is now complete. You may now move on to Task 2.</span
+          >
+        </ol>
+      </section>
+
+      <section>
+        <h2>Task 2 - Question 1: Patient Transformer Implementation</h2>
+        <p>
+          <span class="label">30 marks</span>
+          Spend 45-50 minutes
+        </p>
+        <p>
+          <span class="important"
+            >This is a full feature implementation task. You will implement the
+            complete <code>PatientTransformer</code> class from scratch.</span
+          >
+        </p>
+        <ol>
+          <li>
+            Open the file <code>backend/lib/transform.py</code>. This file
+            currently contains TODO comments indicating where you need to
+            implement the <code>PatientTransformer</code> class.
+          </li>
+          <li>
+            <h3>Understanding the Task</h3>
+            <p>
+              The <code>PatientTransformer</code> class processes raw patient
+              data through a transformation pipeline. It enriches patient
+              records with:
+            </p>
+            <ul>
+              <li>
+                Derived clinical metrics (pulse pressure, mean arterial
+                pressure)
+              </li>
+              <li>
+                Blood pressure stage classification (<a
+                  href="https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings"
+                  >AHA guidelines</a
+                >)
+              </li>
+              <li>Risk assessment based on patient conditions</li>
+              <li>Final enriched patient objects with risk levels</li>
+            </ul>
+            <p>
+              Review the following files to understand the data structures and
+              how the class is used:
+            </p>
+            <ul>
+              <li>
+                <code>backend/custom_types/models.py</code> - See the
+                <code>Patient</code> and <code>EnrichedPatient</code> models
+              </li>
+              <li>
+                <code>backend/custom_types/enums.py</code> - See the
+                <code>BPStage</code> and <code>RiskLevel</code> enums
+              </li>
+              <li>
+                <code>backend/lib/load.py</code> - See how
+                <code>PatientTransformer.enrich_patient()</code> is called
+              </li>
+            </ul>
+          </li>
+          <li>
+            <h3>Implementation Requirements</h3>
+            <p>You must implement the following class methods:</p>
+            <ol type="a">
+              <li>
+                <code
+                  >derive_metrics(patient: Patient, ctx: Dict[str, Any]) ->
+                  Dict[str, Any]</code
+                >
+                <ul>
+                  <li>
+                    Calculate <b>pulse pressure</b> = systolic BP - diastolic BP
+                  </li>
+                  <li>
+                    Calculate <b>mean arterial pressure</b> = (2 × diastolic BP
+                    + systolic BP) / 3
+                  </li>
+                  <li>
+                    Store both values in the context dictionary and return it
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <code
+                  >classify_bp(patient: Patient, ctx: Dict[str, Any]) ->
+                  Dict[str, Any]</code
+                >
+                <ul>
+                  <li>
+                    Classify blood pressure according to AHA BP stage
+                    classification (see specifications below)
+                  </li>
+                  <li>
+                    Set <code>ctx["bp_stage"]</code> to the appropriate
+                    <code>BPStage</code> enum value
+                  </li>
+                  <li>Return the updated context</li>
+                </ul>
+              </li>
+              <li>
+                <code
+                  >apply_risk_rules(patient: Patient, ctx: Dict[str, Any]) ->
+                  Dict[str, Any]</code
+                >
+                <ul>
+                  <li>
+                    Apply risk assessment rules based on patient conditions (see
+                    specifications below)
+                  </li>
+                  <li>
+                    Update <code>ctx["flags"]</code> (list),
+                    <code>ctx["score"]</code> (int), and
+                    <code>ctx["reasons"]</code> (list) based on the rules
+                  </li>
+                  <li>Return the updated context</li>
+                </ul>
+              </li>
+              <li>
+                <code
+                  >prepare_enriched_patient(patient: Patient, ctx: Dict[str,
+                  Any]) -> EnrichedPatient</code
+                >
+                <ul>
+                  <li>
+                    Determine risk level based on score:
+                    <ul>
+                      <li>Score &lt; 20 → <code>RiskLevel.LOW</code></li>
+                      <li>
+                        20 ≤ Score &lt; 40 → <code>RiskLevel.MEDIUM</code>
+                      </li>
+                      <li>Score ≥ 40 → <code>RiskLevel.HIGH</code></li>
+                    </ul>
+                  </li>
+                  <li>
+                    Convert patient data: <code>smoker</code> and
+                    <code>diabetes</code> must be converted to strings ("0" or
+                    "1") for Pydantic validation
+                  </li>
+                  <li>
+                    Create and return an <code>EnrichedPatient</code> object
+                    with all enriched fields
+                  </li>
+                  <li>
+                    Round <code>mean_arterial_pressure</code> to 2 decimal
+                    places
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <code>enrich_patient(patient: Patient) -> EnrichedPatient</code>
+                <ul>
+                  <li>
+                    Main orchestration method that coordinates the
+                    transformation pipeline
+                  </li>
+                  <li>
+                    Initialize context dictionary with:
+                    <code>{"reasons": [], "flags": [], "score": 0}</code>
+                  </li>
+                  <li>
+                    Call methods in order: <code>derive_metrics</code> →
+                    <code>classify_bp</code> → <code>apply_risk_rules</code> →
+                    <code>prepare_enriched_patient</code>
+                  </li>
+                  <li>Return the final <code>EnrichedPatient</code> object</li>
+                </ul>
+              </li>
+            </ol>
+          </li>
+          <li>
+            <h3>Specifications</h3>
+            <h4>Blood Pressure Classification (AHA Guidelines)</h4>
+            <p>
+              Classify blood pressure based on systolic and diastolic values
+              using the following thresholds (check in order, use first match):
+            </p>
+            <ul>
+              <li>
+                <b>Hypertensive Crisis:</b> Systolic ≥ 180 <b>OR</b> Diastolic ≥
+                120 → <code>BPStage.HYPERTENSIVE_CRISIS</code>
+              </li>
+              <li>
+                <b>Stage 2:</b> Systolic ≥ 140 <b>OR</b> Diastolic ≥ 90 →
+                <code>BPStage.STAGE_2</code>
+              </li>
+              <li>
+                <b>Stage 1:</b> Systolic ≥ 130 <b>OR</b> Diastolic ≥ 80 →
+                <code>BPStage.STAGE_1</code>
+              </li>
+              <li>
+                <b>Elevated:</b> Systolic ≥ 120 (and doesn't meet above
+                criteria) → <code>BPStage.ELEVATED</code>
+              </li>
+              <li>
+                <b>Normal:</b> All other cases → <code>BPStage.NORMAL</code>
+              </li>
+            </ul>
+            <h4>Risk Assessment Rules</h4>
+            <p>
+              Apply the following rules to calculate risk score and collect
+              flags/reasons:
+            </p>
+            <ul>
+              <li>
+                <b>Hypoxia:</b> If <code>oxygen_saturation &lt; 92</code>
+                <ul>
+                  <li>Add "hypoxia" to <code>ctx["flags"]</code></li>
+                  <li>Add 30 to <code>ctx["score"]</code></li>
+                  <li>
+                    Add "SpO2 &lt; 92% - hypoxia risk (+30)" to
+                    <code>ctx["reasons"]</code>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <b>Hypertension:</b> If
+                <code>blood_pressure_systolic ≥ 140</code> <b>OR</b>
+                <code>blood_pressure_diastolic ≥ 90</code>
+                <ul>
+                  <li>Add "hypertension" to <code>ctx["flags"]</code></li>
+                  <li>Add 15 to <code>ctx["score"]</code></li>
+                  <li>
+                    Add "BP in hypertension range (+15)" to
+                    <code>ctx["reasons"]</code>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <b>Diabetes:</b> If <code>patient.diabetes == True</code>
+                <ul>
+                  <li>Add 10 to <code>ctx["score"]</code></li>
+                  <li>
+                    Add "Diabetes present (+10)" to <code>ctx["reasons"]</code>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <b>Smoker:</b> If <code>patient.smoker == True</code>
+                <ul>
+                  <li>Add 5 to <code>ctx["score"]</code></li>
+                  <li>Add "Smoker (+5)" to <code>ctx["reasons"]</code></li>
+                </ul>
+              </li>
+            </ul>
+            <h4>Formulas</h4>
+            <ul>
+              <li>
+                <b>Pulse Pressure:</b>
+                <code
+                  >pulse_pressure = blood_pressure_systolic -
+                  blood_pressure_diastolic</code
+                >
+              </li>
+              <li>
+                <b>Mean Arterial Pressure:</b>
+                <code
+                  >mean_arterial_pressure = (2 × blood_pressure_diastolic +
+                  blood_pressure_systolic) / 3</code
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            <h3>Key Requirements</h3>
+            <ul>
+              <li>
+                All methods should be <code>@classmethod</code> decorators
+              </li>
+              <li>
+                Use the context dictionary pattern (<code>ctx</code>) to pass
+                data between transformation stages
+              </li>
+              <li>
+                Return appropriate types: <code>Dict[str, Any]</code> for
+                context methods, <code>EnrichedPatient</code> for final output
+              </li>
+              <li>
+                Handle all edge cases appropriately (e.g., ensure lists are
+                initialized before appending)
+              </li>
+              <li>
+                Follow the exact specifications provided above for rules,
+                thresholds, and formulas
+              </li>
+            </ul>
+          </li>
+          <li>
+            <h3>Testing Your Implementation</h3>
+            <p>
+              After implementing the class, you can test it by running the
+              backend server:
+            </p>
+            <ul>
+              <li>
+                Navigate to <code>backend/</code> folder, activate the virtual
+                environment and run: <code>python app.py</code> or
+                <code>uvicorn app:app --reload</code>
+              </li>
+              <li>
+                The server should start successfully and load patient data on
+                startup
+              </li>
+              <li>
+                Check that the API endpoints return enriched patient data with
+                all calculated fields
+              </li>
+            </ul>
+          </li>
+          <span class="important"
+            >Question 1 is now complete. Commit and push your work to your
+            personal forked repository. You may now move on to Question 2.</span
+          >
+        </ol>
+      </section>
+
+      <section>
+        <h2>Task 3 - Question 2: Statistics Computation</h2>
+        <p>
+          <span class="label">20 marks</span>
+          Spend 30-35 minutes
+        </p>
+        <p>
+          This is a focused task with multiple parts. You will implement
+          statistical computation functionality for the
+          <code>StatisticsComputer</code> class.
+        </p>
+        <ol>
+          <li>
+            Open the file <code>backend/lib/stats.py</code>. This file contains
+            TODO comments indicating where you need to implement three methods:
+            <code>get_age_band</code>, <code>compute_stats</code>, and
+            <code>compute_statistics</code>.
+          </li>
+          <li>
+            <h3>Understanding the Task</h3>
+            <p>
+              The <code>StatisticsComputer</code> class provides functionality
+              for computing statistics on patient data. It includes:
+            </p>
+            <ul>
+              <li>Age band mapping (categorizing patients by age groups)</li>
+              <li>
+                Basic statistics calculation (mean, median, population standard
+                deviation)
+              </li>
+              <li>
+                Dataset-level statistics grouped by age bands for multiple
+                health metrics
+              </li>
+            </ul>
+            <p>Review the following files to understand the data structures:</p>
+            <ul>
+              <li>
+                <code>backend/custom_types/models.py</code> - See the
+                <code>Stats</code>, <code>AgeBandStats</code>, and
+                <code>DatasetStatistics</code> models
+              </li>
+              <li>
+                <code>backend/custom_types/enums.py</code> - See the
+                <code>AgeBand</code> enum values
+              </li>
+              <li>
+                <code>backend/lib/load.py</code> - See how
+                <code>StatisticsComputer.compute_statistics()</code> is used
+              </li>
+            </ul>
+          </li>
+          <li>
+            <h3>Part (a): Implement <code>get_age_band</code> method</h3>
+            <p>
+              Map a patient's age to the appropriate age band according to the
+              following ranges:
+            </p>
+            <ul>
+              <li>0-17 → <code>AgeBand.ZERO_TO_SEVENTEEN</code></li>
+              <li>18-39 → <code>AgeBand.EIGHTEEN_TO_THIRTY_NINE</code></li>
+              <li>40-64 → <code>AgeBand.FORTY_TO_SIXTY_FOUR</code></li>
+              <li>65+ → <code>AgeBand.SIXTY_FIVE_PLUS</code></li>
+            </ul>
+            <p>
+              <b>Requirements:</b> Return the appropriate
+              <code>AgeBand</code> enum value. Handle edge cases appropriately
+              (e.g., boundary values).
+            </p>
+            <p class="muted">
+              Implement this method where you see the TODO comment for Q2(a) in
+              <code>stats.py</code>
+            </p>
+          </li>
+          <li>
+            <h3>Part (b): Implement <code>compute_stats</code> method</h3>
+            <p>
+              Calculate basic statistics from a list of numeric values. You need
+              to compute:
+            </p>
+            <ul>
+              <li>
+                <b>Mean:</b> The average of all values (sum divided by count)
+              </li>
+              <li>
+                <b>Median:</b> The middle value when values are sorted (if even
+                number of values, average the two middle values)
+              </li>
+              <li>
+                <b>Population Standard Deviation:</b> Square root of the
+                population variance. Use the formula: √(Σ(x - mean)² / n) where
+                n is the total count (not n-1)
+              </li>
+            </ul>
+            <p><b>Requirements:</b></p>
+            <ul>
+              <li>
+                Construct and return a <code>Stats</code> Pydantic model with
+                the calculated values
+              </li>
+              <li>
+                Handle edge cases: if the input list is empty, raise a
+                <code>ValueError</code> with an appropriate message
+              </li>
+              <li>
+                <span class="important">Important:</span> Use
+                <b>population</b> standard deviation (divide by n, not n-1)
+              </li>
+            </ul>
+            <p class="muted">
+              Implement this method where you see the TODO comment for Q2(b) in
+              <code>stats.py</code>
+            </p>
+          </li>
+          <li>
+            <h3>Part (c): Implement <code>compute_statistics</code> method</h3>
+            <p>
+              Compute statistics for the entire dataset, grouped by age bands.
+              This method should process patients and calculate statistics for
+              three health metrics: <code>blood_pressure_systolic</code>,
+              <code>heart_rate</code>, and <code>glucose_fasting</code>.
+            </p>
+            <p><b>Algorithm Overview:</b> Follow a three-pass approach:</p>
+            <ol type="1">
+              <li>
+                <b>Pass 1 - Bucket and Collect:</b> Organize patients by age
+                band and collect values for each metric into separate lists
+              </li>
+              <li>
+                <b>Pass 2 - Compute Statistics:</b> For each age band and each
+                metric, compute statistics using <code>compute_stats</code>. If
+                a metric has no values for an age band, set it to
+                <code>None</code>
+              </li>
+              <li>
+                <b>Pass 3 - Cleanup:</b> If all three metrics for an age band
+                are <code>None</code>, set the entire age band entry to
+                <code>None</code> in the final result
+              </li>
+            </ol>
+            <p><b>Requirements:</b></p>
+            <ul>
+              <li>
+                Initialize buckets for all four age bands with empty lists for
+                each metric
+              </li>
+              <li>
+                Use <code>get_age_band</code> to determine each patient's age
+                band
+              </li>
+              <li>
+                Extract and convert values to float for:
+                <code>blood_pressure_systolic</code>, <code>heart_rate</code>,
+                and <code>glucose_fasting</code>
+              </li>
+              <li>
+                Use <code>compute_stats</code> to calculate statistics for each
+                metric in each age band
+              </li>
+              <li>
+                Handle empty lists by setting the corresponding statistic to
+                <code>None</code>
+              </li>
+              <li>
+                Construct <code>AgeBandStats</code> objects for each age band
+                with the computed statistics
+              </li>
+              <li>
+                In the final pass, set age band to <code>None</code> if all
+                three statistics are <code>None</code>
+              </li>
+              <li>
+                Return a <code>DatasetStatistics</code> model with:
+                <ul>
+                  <li>
+                    <code>total_patients</code>: Total number of patients in the
+                    input list
+                  </li>
+                  <li>
+                    <code>age_bands</code>: Dictionary mapping age band strings
+                    to <code>AgeBandStats</code> objects (or <code>None</code>)
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <p class="muted">
+              Implement this method where you see the TODO comment for Q2(c) in
+              <code>stats.py</code>
+            </p>
+          </li>
+          <li>
+            <h3>Key Requirements</h3>
+            <ul>
+              <li>
+                All methods should be <code>@classmethod</code> decorators
+              </li>
+              <li>
+                Use population standard deviation (divide by n, not n-1) in
+                <code>compute_stats</code>
+              </li>
+              <li>
+                Statistics should be computed for exactly three metrics:
+                <code>blood_pressure_systolic</code>, <code>heart_rate</code>,
+                <code>glucose_fasting</code>
+              </li>
+              <li>
+                Follow the three-pass algorithm pattern: bucket → compute →
+                cleanup
+              </li>
+              <li>
+                Handle edge cases appropriately (empty lists, missing values,
+                etc.)
+              </li>
+              <li>
+                Ensure proper type conversions (e.g., convert patient field
+                values to float)
+              </li>
+            </ul>
+          </li>
+          <li>
+            <h3>Testing Your Implementation</h3>
+            <p>
+              After implementing the methods, you can test them by running the
+              backend server:
+            </p>
+            <ul>
+              <li>
+                Navigate to <code>backend/</code> folder, activate the virtual
+                environment and run: <code>python app.py</code> or
+                <code>uvicorn app:app --reload</code>
+              </li>
+              <li>
+                The server should start successfully and compute statistics on
+                startup
+              </li>
+              <li>
+                Check that the <code>/statistics</code> endpoint returns
+                properly computed statistics grouped by age bands
+              </li>
+            </ul>
+          </li>
+          <span class="important"
+            >Question 2 is now complete. Commit and push your work to your
+            personal forked repository. You may now move on to Question 3.</span
+          >
+        </ol>
+      </section>
+
+      <section>
+        <h2>Task 4 - Question 3: Application Setup and Filtering</h2>
+        <p>
+          <span class="label">15 marks</span>
+          Spend 25-30 minutes
+        </p>
+        <p>
+          This is a focused task with two parts. You will implement FastAPI
+          application initialization and patient filtering functionality.
+        </p>
+        <ol>
+          <li>
+            Open the file <code>backend/app.py</code>. This file contains TODO
+            comments indicating where you need to implement two parts: the
+            lifespan startup logic and the <code>get_patients</code> filter
+            logic.
+          </li>
+          <li>
+            <h3>Understanding the Task</h3>
+            <p>
+              The FastAPI application needs to initialize data on startup and
+              provide filtering capabilities for patient data. This task
+              involves:
+            </p>
+            <ul>
+              <li>
+                Setting up the data pipeline when the application starts (ETL:
+                Extract, Transform, Load)
+              </li>
+              <li>
+                Implementing query parameter-based filtering for the patients
+                endpoint
+              </li>
+            </ul>
+            <p>Review the following files to understand the structure:</p>
+            <ul>
+              <li>
+                <code>backend/lib/extract.py</code> - See the
+                <code>extract_patients</code> function
+              </li>
+              <li>
+                <code>backend/lib/load.py</code> - See the
+                <code>load_data</code>
+                function and its return values
+              </li>
+              <li>
+                <code>backend/store.py</code> - See the store structure and
+                variables
+              </li>
+              <li>
+                <code>backend/lib/stats.py</code> - See how
+                <code>StatisticsComputer.get_age_band</code> is used
+              </li>
+              <li>
+                <code>backend/custom_types/models.py</code> - See the
+                <code>EnrichedPatient</code> model
+              </li>
+              <li>
+                <code>backend/custom_types/enums.py</code> - See the
+                <code>RiskLevel</code>, <code>BPStage</code>, and
+                <code>AgeBand</code> enums
+              </li>
+            </ul>
+          </li>
+          <li>
+            <h3>Part (a): Implement Lifespan Startup Logic</h3>
+            <p>
+              The <code>lifespan</code> function is a FastAPI lifespan context
+              manager that runs code when the application starts and stops. You
+              need to implement the startup logic (before the <code>yield</code>
+              statement).
+            </p>
+            <p><b>Requirements:</b></p>
+            <ol type="1">
+              <li>
+                Extract patient data from CSV by calling
+                <code>extract_patients()</code>
+              </li>
+              <li>
+                Process and load the data by calling
+                <code>load_data(patients)</code>
+              </li>
+              <li>
+                Populate the store with the processed data (see
+                <code>store.py</code> for the store structure):
+              </li>
+              <li>
+                Ensure the data is ready for use by API endpoints (the store
+                should be populated before the application accepts requests)
+              </li>
+            </ol>
+            <p>
+              <b>Note:</b> Follow the ETL flow: extract → load_data → store. The
+              <code>yield</code> statement and cleanup code (after yield) are
+              already implemented and should not be modified.
+            </p>
+            <p class="muted">
+              Implement this logic where you see the TODO comment for Q3(a) in
+              the <code>lifespan</code> function in <code>app.py</code>
+            </p>
+          </li>
+          <li>
+            <h3>Part (b): Implement <code>get_patients</code> Filter Logic</h3>
+            <p>
+              The <code>get_patients</code> endpoint accepts optional query
+              parameters for filtering patients. You need to implement the
+              filtering logic that applies all provided filters simultaneously
+              (AND logic).
+            </p>
+            <p><b>Requirements:</b></p>
+            <ol type="1">
+              <li>
+                Start with a copy of <code>store.ENRICHED_PATIENTS</code> to
+                avoid modifying the original list
+              </li>
+              <li>
+                Filter by <code>risk_level</code> if provided, keeping only
+                patients that match
+              </li>
+              <li>
+                Filter by <code>bp_stage</code> if provided, keeping only
+                patients that match
+              </li>
+              <li>
+                Filter by <code>age_band</code> if provided, keeping only
+                patients that match
+              </li>
+              <li>
+                Apply all provided filters simultaneously (AND logic) - a
+                patient must match all provided filter criteria to be included
+                in the result
+              </li>
+              <li>Return the filtered list of patients</li>
+            </ol>
+            <p>
+              <b>Important Notes:</b>
+            </p>
+            <ul>
+              <li>
+                All query parameters are optional - only apply filters if the
+                parameter is not <code>None</code>
+              </li>
+              <li>
+                Maintain the existing route signature and response model - do
+                not change the function signature or decorators
+              </li>
+              <li>
+                Filter logic should work with all combinations of query
+                parameters (none, one, two, or all three)
+              </li>
+              <li>
+                Use list comprehensions or filter functions to implement the
+                filtering logic
+              </li>
+            </ul>
+            <p class="muted">
+              Implement this logic where you see the TODO comment for Q3(b) in
+              the <code>get_patients</code> function in <code>app.py</code>
+            </p>
+          </li>
+          <li>
+            <h3>Key Requirements</h3>
+            <ul>
+              <li>
+                Follow the ETL flow in lifespan: extract → load_data → store
+              </li>
+              <li>
+                Filter logic should work with all combinations of query
+                parameters
+              </li>
+              <li>
+                Maintain the existing route signature and response model for
+                <code>get_patients</code>
+              </li>
+              <li>
+                Use <code>StatisticsComputer.get_age_band</code> for age band
+                filtering (do not duplicate the age band logic)
+              </li>
+              <li>
+                Apply filters with AND logic (all provided filters must match)
+              </li>
+              <li>
+                Handle optional parameters correctly (only filter if parameter
+                is not <code>None</code>)
+              </li>
+            </ul>
+          </li>
+          <li>
+            <h3>Testing Your Implementation</h3>
+            <p>
+              After implementing both parts, you can test them by running the
+              backend server:
+            </p>
+            <ul>
+              <li>
+                Navigate to <code>backend/</code> folder, activate the virtual
+                environment and run: <code>python app.py</code> or
+                <code>uvicorn app:app --reload</code>
+              </li>
+              <li>
+                The server should start successfully and load patient data on
+                startup (check the console for any errors)
+              </li>
+              <li>
+                Test the <code>/patients</code> endpoint:
+                <ul>
+                  <li>
+                    Without filters: <code>GET /patients</code> should return
+                    all patients
+                  </li>
+                  <li>
+                    With single filter:
+                    <code>GET /patients?risk_level=high</code>
+                    should return only high-risk patients
+                  </li>
+                  <li>
+                    With multiple filters:
+                    <code
+                      >GET /patients?risk_level=high&bp_stage=Stage%202</code
+                    >
+                    should return patients matching both criteria
+                  </li>
+                  <li>
+                    With age band filter:
+                    <code>GET /patients?age_band=18-39</code> should return only
+                    patients in that age band
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <span class="important"
+            >Question 3 is now complete. Commit and push your work to your
+            personal forked repository. You may now move on to Question 4.</span
+          >
+        </ol>
+      </section>
+
+      <section>
+        <h2>Task 5 - Question 4: Patient Operations Hook Implementation</h2>
+        <p>
+          <span class="label">25 marks</span>
+          Spend 40-45 minutes
+        </p>
+        <p>
+          <span class="important"
+            >This is a full feature implementation task. You will implement the
+            complete <code>usePatientOperations</code> hook from scratch.</span
+          >
+        </p>
+        <ol>
+          <li>
+            Open the file
+            <code>frontend/src/contexts/hooks/usePatientOperations.ts</code>.
+            This file currently contains TODO comments indicating where you need
+            to implement the hook.
+          </li>
+          <li>
+            <h3>Understanding the Task</h3>
+            <p>
+              The <code>usePatientOperations</code> hook coordinates data
+              fetching operations between the state management and API layers.
+            </p>
+            <p>This hook acts as a bridge between:</p>
+            <ul>
+              <li>
+                <b>State Layer</b> (<code>usePatientState</code>): Provides
+                state values and setters for patients, statistics, loading
+                states, errors, and filters
+              </li>
+              <li>
+                <b>API Layer</b> (<code>usePatientAPI</code>): Provides
+                functions to make HTTP requests to the backend API
+              </li>
+            </ul>
+            <p>Review the following files to understand the structure:</p>
+            <ul>
+              <li>
+                <code>frontend/src/contexts/hooks/usePatientState.ts</code> -
+                See the state structure, values, and setters available
+              </li>
+              <li>
+                <code>frontend/src/contexts/hooks/usePatientAPI.ts</code> - See
+                the API functions <code>getPatients</code> and
+                <code>getStatistics</code> (may be implemented in Q5, but you
+                should understand the expected interface)
+              </li>
+              <li>
+                <code>frontend/src/types/alias.ts</code> - See type definitions
+                for <code>EnrichedPatient</code>,
+                <code>DatasetStatistics</code>, and <code>PatientFilters</code>
+              </li>
+              <li>
+                <code>frontend/src/contexts/PatientContext.tsx</code> - See how
+                the hook is used and what it returns
+              </li>
+            </ul>
+          </li>
+          <li>
+            <h3>Function Interface</h3>
+            <p>
+              The hook function signature is provided. You must implement the
+              hook with this exact signature:
+            </p>
+            <pre><code>export function usePatientOperations(
+  state: ReturnType&lt;typeof usePatientState&gt;,
+  api: ReturnType&lt;typeof usePatientAPI&gt;
+)</code></pre>
+            <p>The hook should return an object with two functions:</p>
+            <ul>
+              <li>
+                <code>fetchPatients: () => Promise&lt;void&gt;</code> - Fetch
+                patients with current filters
+              </li>
+              <li>
+                <code>fetchStatistics: () => Promise&lt;void&gt;</code> - Fetch
+                statistics from API
+              </li>
+            </ul>
+          </li>
+          <li>
+            <h3>Implementation Requirements</h3>
+            <p>You must implement the following functionality:</p>
+            <h4>Extract State and API Functions</h4>
+            <p>
+              Destructure the necessary values from the <code>state</code> and
+              <code>api</code> parameters.
+            </p>
+
+            <h4>
+              Implement <code>fetchPatients</code> and
+              <code>fetchStatistics</code> Functions
+            </h4>
+            <p>These functions should:</p>
+            <ol type="1">
+              <li>Set loading state using the appropriate state setter</li>
+              <li>
+                Clear any previous errors using the appropriate state setter
+              </li>
+              <li>Make API call using the appropriate API function</li>
+              <li>Handle success</li>
+              <li>Handle errors</li>
+              <li>Clear loading state using the appropriate state setter</li>
+            </ol>
+            <h4>Use <code>useCallback</code> for Memoization</h4>
+            <p>
+              Both functions should be wrapped with <code>useCallback</code> to
+              prevent unnecessary re-renders. You must determine the correct
+              dependency arrays.
+            </p>
+            <p>
+              <span class="important">Important:</span> Ensure all dependencies
+              are included in the dependency arrays to satisfy ESLint rules and
+              prevent bugs.
+            </p>
+          </li>
+          <li>
+            <h3>Error Handling</h3>
+            <p>Transform errors to user-friendly messages:</p>
+            <ul>
+              <li>
+                If the error is an <code>Error</code> instance, use
+                <code>error.message</code>
+              </li>
+              <li>
+                Otherwise, use a default message like "Failed to fetch patients"
+                or "Failed to fetch statistics"
+              </li>
+            </ul>
+            <p>
+              Use try/catch blocks to handle errors appropriately. Always ensure
+              loading states are cleared even if an error occurs (use
+              <code>finally</code> blocks).
+            </p>
+          </li>
+          <li>
+            <h3>Key Requirements</h3>
+            <ul>
+              <li>
+                Use <code>useCallback</code> for both functions to prevent
+                unnecessary re-renders
+              </li>
+              <li>
+                Determine correct dependency arrays - include all functions and
+                values used within each callback
+              </li>
+              <li>
+                Coordinate with <code>usePatientState</code> and
+                <code>usePatientAPI</code> hooks
+              </li>
+              <li>
+                Set loading states before API calls and clear them after (in
+                <code>finally</code> blocks)
+              </li>
+              <li>Transform errors to user-friendly messages</li>
+              <li>Follow existing code patterns and conventions</li>
+              <li>
+                Ensure all dependencies are included (check
+                <code>eslint.config.js</code> - the
+                <code>react-hooks/exhaustive-deps</code> rule will warn if
+                dependencies are missing)
+              </li>
+              <li>
+                Use proper TypeScript types - the function should return an
+                object with the correct function signatures
+              </li>
+            </ul>
+          </li>
+          <li>
+            <h3>Testing Your Implementation</h3>
+            <p>
+              After implementing the hook, you can test it by running the
+              frontend application:
+            </p>
+            <ul>
+              <li>
+                Navigate to <code>frontend/</code> folder and run:
+                <code>npm run dev</code>
+              </li>
+              <li>Ensure the backend server is running (from Question 3)</li>
+              <li>
+                The application should load and fetch patient data and
+                statistics on mount
+              </li>
+              <li>
+                Check that loading states are displayed while data is being
+                fetched
+              </li>
+              <li>
+                Test error handling by stopping the backend server and verifying
+                that error messages are displayed
+              </li>
+              <li>
+                Verify that filters work correctly - changing filters should
+                trigger a new fetch with updated parameters
+              </li>
+            </ul>
+          </li>
+          <span class="important"
+            >Question 4 is now complete. Commit and push your work to your
+            personal forked repository. You may now move on to Question 5.</span
+          >
+        </ol>
+      </section>
+
+      <section>
+        <h2>Task 6 - Question 5: API Client and Error Handling</h2>
+        <p>
+          <span class="label">10 marks</span>
+          Spend 20-25 minutes
+        </p>
+        <p>
+          This is a focused task with two parts. You will implement API client
+          functions and error interceptor for consistent API communication and
+          error handling across the application.
+        </p>
+        <ol>
+          <li>
+            Open the files
+            <code>frontend/src/contexts/hooks/usePatientAPI.ts</code> and
+            <code>frontend/src/lib/api.ts</code>. These files contain TODO
+            comments indicating where you need to implement the API client
+            functions and error interceptor.
+          </li>
+          <li>
+            <h3>Understanding the Task</h3>
+            <p>This task involves implementing the API communication layer:</p>
+            <ul>
+              <li>
+                <b>API Client Functions:</b> Functions that make HTTP requests
+                to the backend API with proper TypeScript typing
+              </li>
+              <li>
+                <b>Error Interceptor:</b> Axios interceptor that transforms API
+                error responses into user-friendly error messages
+              </li>
+            </ul>
+            <p>Review the following files to understand the structure:</p>
+            <ul>
+              <li>
+                <code>frontend/src/lib/api.ts</code> - See the existing API
+                instance setup and axios configuration
+              </li>
+              <li>
+                <code>frontend/src/types/alias.ts</code> - See type definitions
+                for <code>EnrichedPatient</code>,
+                <code>DatasetStatistics</code>, and <code>PatientFilters</code>
+              </li>
+              <li>
+                <code>frontend/src/types/api.ts</code> - See API-related types
+                (if needed)
+              </li>
+              <li>
+                <code>frontend/src/contexts/hooks/usePatientOperations.ts</code>
+                - See how the API functions are used (may be implemented in Q4)
+              </li>
+            </ul>
+          </li>
+          <li>
+            <h3>
+              Part (a): Implement API Client Functions in
+              <code>usePatientAPI</code>
+            </h3>
+            <p>
+              Implement two API client functions in the
+              <code>usePatientAPI</code> hook:
+            </p>
+            <h4>Implement <code>getPatients</code> Function</h4>
+            <p>This function should:</p>
+            <ol type="1">
+              <li>
+                Accept filter parameters:
+                <code>filters: PatientFilters = {}</code>
+                (default to empty object)
+              </li>
+              <li>Make a GET request to the <code>/patients</code> endpoint</li>
+              <li>
+                Use proper TypeScript generics:
+                <code>api.get&lt;EnrichedPatient[]&gt;</code>
+              </li>
+              <li>Pass filters as query parameters in the request config</li>
+              <li>
+                Return the typed data from the response:
+                <code>return data</code>
+              </li>
+            </ol>
+            <h4>Implement <code>getStatistics</code> Function</h4>
+            <p>This function should:</p>
+            <ol type="1">
+              <li>
+                Make a GET request to the <code>/statistics</code> endpoint
+                using
+              </li>
+              <li>
+                Use proper TypeScript generics:
+                <code>api.get&lt;DatasetStatistics&gt;</code>
+              </li>
+              <li>
+                Return the typed data from the response:
+                <code>return data</code>
+              </li>
+            </ol>
+            <p class="muted">
+              Implement these functions where you see the TODO comments for
+              Q5(a) in <code>usePatientAPI.ts</code>
+            </p>
+          </li>
+          <li>
+            <h3>
+              Part (b): Implement Error Interceptor in <code>lib/api.ts</code>
+            </h3>
+            <p>
+              Implement an axios response interceptor that handles API errors
+              consistently across the application. The interceptor should
+              transform error messages from API responses to be user-friendly.
+            </p>
+            <p><b>Requirements:</b></p>
+            <ol type="1">
+              <li>
+                The interceptor is already configured on the <code>api</code>
+                instance - you need to implement the error handling logic in the
+                error callback function
+              </li>
+              <li>
+                Check if the error is an Axios error and has response data:
+                <code>axios.isAxiosError(error) && error.response?.data</code>
+              </li>
+              <li>
+                Extract the error details from the response data structure
+              </li>
+              <li>Transform the error message</li>
+              <li>
+                Return suitably to propagate the error (so it can be caught by
+                the calling code)
+              </li>
+            </ol>
+            <p>
+              <b>Note:</b> The success handler (first parameter) is already
+              implemented and should not be modified. Only implement the error
+              handler (second parameter).
+            </p>
+            <p class="muted">
+              Implement this logic where you see the TODO comment for Q5(b) in
+              <code>lib/api.ts</code>
+            </p>
+          </li>
+          <li>
+            <h3>Key Requirements</h3>
+            <ul>
+              <li>
+                Use the existing <code>api</code> axios instance from
+                <code>lib/api.ts</code>
+              </li>
+              <li>
+                Handle query parameters correctly in <code>getPatients</code> -
+                pass filters as <code>params</code> in the request config
+              </li>
+              <li>
+                Use proper TypeScript generics for type safety:
+                <code>api.get&lt;EnrichedPatient[]&gt;</code> and
+                <code>api.get&lt;DatasetStatistics&gt;</code>
+              </li>
+              <li>
+                Error interceptor should extract <code>detail</code> from error
+                response data structure
+              </li>
+              <li>
+                Use <code>useCallback</code> with empty dependency arrays for
+                API functions (since <code>api</code> is stable)
+              </li>
+              <li>Follow existing code patterns and conventions</li>
+              <li>Ensure proper error propagation</li>
+            </ul>
+          </li>
+          <li>
+            <h3>Testing Your Implementation</h3>
+            <p>
+              After implementing both parts, you can test them by running the
+              frontend application:
+            </p>
+            <ul>
+              <li>
+                Navigate to <code>frontend/</code> folder and run:
+                <code>npm run dev</code>
+              </li>
+              <li>Ensure the backend server is running (from Question 3)</li>
+              <li>
+                The application should successfully fetch patient data and
+                statistics
+              </li>
+              <li>
+                Test error handling:
+                <ul>
+                  <li>
+                    Stop the backend server and verify that error messages are
+                    displayed correctly
+                  </li>
+                  <li>
+                    Check that the error interceptor extracts the
+                    <code>detail</code> field from API error responses
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Test filtering:
+                <ul>
+                  <li>
+                    Apply filters in the UI and verify that the
+                    <code>getPatients</code> function is called with the correct
+                    filter parameters
+                  </li>
+                  <li>
+                    Check the network tab to see that query parameters are
+                    correctly sent to the backend
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <span class="important"
+            >Question 5 is now complete. Commit and push your work to your
+            personal forked repository.</span
+          >
+        </ol>
+        <p class="important-tag">
+          Congratulations on completing this assessment! You may now submit a
+          pull request (ensuring that all local changes have been pushed) to the
+          main repository from your forked repository to confirm your
+          submission.
+        </p>
+        <p class="important-tag">
+          Make sure to include your name in the pull request message, along with
+          any additional details in a README.md if you wish to explain / comment
+          on any of the solutions for the previous tasks.
+        </p>
+      </section>
+    </section>
+  </body>
+</html>
