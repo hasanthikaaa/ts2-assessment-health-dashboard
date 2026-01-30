@@ -13,15 +13,21 @@ from custom_types.models import (
     DatasetStatistics,
 )
 from lib.extract import extract_patients
-from lib.stats import StatisticsComputer
 from lib.load import load_data
 
 
 @asynccontextmanager
 async def lifespan(_: FastAPI):
-    # TODO: Q3(a) - Implement lifespan startup logic
-    pass
+    patients = extract_patients()
+
+    enriched_patients, patient_index, dataset_stats = load_data(patients)
+
+    store.ENRICHED_PATIENTS = enriched_patients
+    store.PATIENT_INDEX = patient_index
+    store.DATASET_STATISTICS = dataset_stats
+
     yield
+
     store.reset_store()
 
 
@@ -56,9 +62,32 @@ def get_patients(
     bp_stage: Optional[BPStage] = Query(None, description="Filter by BP stage"),
     age_band: Optional[AgeBand] = Query(None, description="Filter by age band"),
 ):
-    # TODO: Q3(b) - Implement get_patients filter logic
-    pass
+    patients = store.ENRICHED_PATIENTS or []
 
+    # Filter by risk_level
+    if risk_level:
+        patients = [p for p in patients if p.risk_level == risk_level]
+
+    # Filter by bp_stage
+    if bp_stage:
+        patients = [p for p in patients if p.bp_stage == bp_stage]
+
+        # Filter by age_band
+    if age_band:
+            def get_band(p):
+                age = p.age
+                if 0 <= age <= 17:
+                    return AgeBand.ZERO_TO_SEVENTEEN
+                elif 18 <= age <= 39:
+                    return AgeBand.EIGHTEEN_TO_THIRTY_NINE
+                elif 40 <= age <= 64:
+                    return AgeBand.FORTY_TO_SIXTY_FOUR
+                else:
+                    return AgeBand.SIXTY_FIVE_PLUS
+
+            patients = [p for p in patients if get_band(p) == age_band]
+
+    return patients
 
 @app.get(
     "/patients/{patient_id}",
