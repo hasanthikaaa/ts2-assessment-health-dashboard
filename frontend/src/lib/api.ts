@@ -8,10 +8,24 @@ export const api = axios.create({
   },
 });
 
-// TODO: Q5(b) - Implement error interceptor
+// Error interceptor
 api.interceptors.response.use(
   (response: AxiosResponse) => response,
   async (error: AxiosError) => {
-    return Promise.reject(error);
-  }
+    let message = "An unexpected error occurred";
+
+    if (error.response?.data) {
+      const data = error.response.data as any;
+
+      if (typeof data.detail === "string") {
+        message = data.detail;
+      } else if (typeof data.message === "string") {
+        message = data.message;
+      }
+    } else if (error.message) {
+      message = error.message;
+    }
+
+    return Promise.reject(new Error(message));
+  },
 );
